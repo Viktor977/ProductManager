@@ -11,22 +11,45 @@ html,body{
 main{
     flex: 1 1 auto;
     display: flex;
+    flex-wrap: wrap;
 }
 .header{
-    height: 50px;
+    height: 5em;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    margin: 0 2% 0 2% ;
+}
+a{
+    text-decoration: none;
 }
 .nav{
     display: flex;
     width: 20%;
+    justify-content: space-between;
 }
+.container_btn{
+    display: block;
+    height: 40px;
 
+    border: 2px solid blue;
+    transition-duration: 3s;
+}
+.container_btn:hover{
+     background-color: blue;
+ }
 .card{
-    height: 10%;
-    width: 20%;
-    margin-left: 5%;
+   height: 170px;
+    margin-left: 20px;
+    list-style: none;
+    text-overflow: ellipsis;
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+}
+.form-check-input m-l-5{
+    margin-left: 20px;
 }
 footer{
     color: blue;
@@ -46,6 +69,7 @@ footer hr{
     border: none;
     cursor: pointer;
 }
+
 
 .dropdown {
     position: relative;

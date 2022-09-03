@@ -1,20 +1,14 @@
 <?php
-
+include_once ('Product.php');
 class Book extends Product
 {
-public $Weight;
-public function PrintBook(){
-    echo "Hello I am Book";
-    echo "<br/>";
-    echo "$this->Weight";
-    echo "<br/>";
-
-    echo "$this->Price";
-    echo "<br/>";
-
-    echo "$this->SKU";
-    echo "<br/>";
-
-
+    /**
+     * @var string
+     */
+    public $Weight;
+public function Print()
+{
+    parent::Print();
+    echo '<span>Weight :</span>'.$this->Weight."<span> KG</span>";
 }
 }

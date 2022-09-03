@@ -41,30 +41,27 @@
         </div>
     </div>
     <br/>
+    <div class="md-3 row">
 
-    <!--
     <label  class="col-sm-2 col-form-label">Type Switcher</label>
-    <div class="dropdown">
-
-        <button class="btn btn-outline-primary dropdown-toggle" type="button" >
-            Type switcher
-        </button>
-        <ul class="dropdown-content">
-            <button class="btn btn-outline-primary" >Mybook</button>
-            <li><a  href="#">DVD</a></li>
-            <li><a class="dropdown-item" href="#">Book</a></li>
-            <li><a class="dropdown-item" href="#">Furniture</a></li>
-        </ul>
-    </div>
-    -->
-    <label  class="col-sm-2 col-form-label">Type Switcher</label>
+        <div class="col-sm-3">
     <select class="form-select form-select sm-3" >
         <option selected>Type Switcher</option>
-        <option value="1">DVD-disc</option>
-        <option value="2">Book</option>
-        <option value="3">Furniture</option>
+        <option value="dvd">DVD-disc</option>
+        <option value="book">Book</option>
+        <option value="furniture">Furniture</option>
     </select>
+            <script>
+                let x=document.querySelector('select');
+                x.addEventListener('click',function (){
+                    console.log(x.value);
+                let y=document.createElement("input");
 
+                    console.log(y);
+                })
+            </script>
+    </div>
+    </div>
 </form>
 
 
