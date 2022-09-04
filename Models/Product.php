@@ -18,6 +18,11 @@
      * @var string
      */
     public $Price;
+
+     /**
+      * @return bool
+      */
+     public $IsChecked;
     public function Print(){
         echo $this->SKU."<br/>";
         echo $this->Title."<br/>";

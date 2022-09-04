@@ -1,8 +1,7 @@
 <?php
-include ('config/product_db.php');
-include ('Models/Product.php');
-include ('Models/Book.php');
+include ('fetchproducts.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,6 @@ include ('Models/Book.php');
     <link rel="stylesheet" href="CSS/media.css">
 </head>
 <body>
-
 <div class="container">
     <header class="header">
         <h2>Product List</h2>
@@ -21,41 +19,24 @@ include ('Models/Book.php');
             <button class="container_btn">
                 <a  href="addproduct.php" >ADD</a>
             </button>
-
             <button type="button" class="container_btn" >MASS DELETE</button>
         </div>
-
     </header>
     <hr/>
-
     <main>
-
         <?php
+           if (empty($products)): ?>
+             <p class="lead mt-3">There are no products</p>
+           <?php endif; ?>
 
-        if (empty($products)): ?>
-            <p class="lead mt-3">There are no products</p>
-        <?php endif; ?>
-
-        <?php foreach ($products as $item): ?>
-            <div class="card">
-
-                <input type="checkbox" class="form-check-input m-l-5"
-                       style="margin-left: 7%;  margin-top: 5%;" >
-                <br/>
-                <?php echo $item['title']?><br/>
-                <?php echo $item['price']; ?><br/>
-
-                <?php echo $item['sku']?><br/>
-                <?php echo $item['weight']?>
-            </div>
-
+           <?php foreach ($products as $item): ?>
+           <div class="card">
+               <input type="checkbox" class="card_check"  >
+               <br/>
+               <?php echo $item->Print()?><br/>
+           </div>
         <?php endforeach;?>
-
-<hr/>
-
-
-</main>
-
+    </main>
 <footer>
     <hr/>
     <p>Scandiweb Test assignment</p>

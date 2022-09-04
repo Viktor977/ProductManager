@@ -1,9 +1,9 @@
 <?php
 include_once ("Models/Book.php");
-include_once ("Models/DVD.php");
+include_once("Models/Dvd.php");
 include_once ("Models/Furniture.php");
 
-class Creater
+class ProductCreator
 {
     public function createBook(): Book
     {
@@ -15,9 +15,9 @@ class Creater
         return new Furniture();
     }
 
-    public function createDvd(): DVD
+    public function createDvd(): Dvd
     {
-        return new DVD();
+        return new Dvd();
     }
 }
 

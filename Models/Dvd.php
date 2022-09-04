@@ -1,6 +1,6 @@
 <?php
 include_once ("Product.php");
-class DVD extends Product
+class Dvd extends Product
 {
     /**
      * @var string

@@ -1,9 +1,9 @@
 <?php
 
 
-include_once ("Models/Creater.php");
+include_once("Models/ProductCreator.php");
 
-$creator=new Creater();
+$creator=new ProductCreator();
 $bookOne=$creator->createBook();
 
 $bookOne->SKU='SKUBOOKONE';
@@ -30,7 +30,7 @@ $bookThree->Weight="300";
 
 $dvdOne=$creator->createDvd();
 $dvdOne->SKU="SKUDVDONE";
-$dvdOne->Title="DVD title";
+$dvdOne->Title="Dvd title";
 $dvdOne->Price="1";
 $dvdOne->size="700";
 
@@ -68,18 +68,13 @@ $furnitureTwo->width='45';
 
 
 $prodArr=array();
-array_push($prodArr,$bookOne,$bookTwo,$bookThree,$dvdOne,$dvdTwo,$dvdThree,$furnitureOne,$furnitureTwo);
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Products</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-<?php
+array_push($prodArr,$bookOne,$bookTwo,$bookThree,$dvdOne,$dvdTwo,
+    $dvdThree,$furnitureOne,$furnitureTwo,$bookOne,$bookTwo,$bookThree,$dvdOne,$dvdTwo,$dvdThree,$furnitureOne,$furnitureTwo,
+    $bookOne,$bookTwo,$bookThree,$dvdOne,$dvdTwo,$dvdThree,$furnitureOne,$furnitureTwo);
+
+
+
+
 
 if (empty($products)): ?>
     <p class="lead mt-3">There are no products</p>
@@ -88,8 +83,8 @@ if (empty($products)): ?>
 <?php foreach ($prodArr as $item): ?>
     <div class="card">
 
-        <input type="checkbox" class="form-check-input m-l-5"
-               style="margin-left: 7%;  margin-top: 5%;" >
+        <input type="checkbox" class="card_check"  >
+
         <br/>
         <?php echo $item->Print()?><br/>
 
