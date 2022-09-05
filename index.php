@@ -1,5 +1,5 @@
 <?php
-include ('fetchproducts.php');
+include ("fetchproducts.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +24,21 @@ include ('fetchproducts.php');
     </header>
     <hr/>
     <main>
-        <?php
-           if (empty($products)): ?>
-             <p class="lead mt-3">There are no products</p>
-           <?php endif; ?>
 
-           <?php foreach ($products as $item): ?>
-           <div class="card">
-               <input type="checkbox" class="card_check"  >
-               <br/>
-               <?php echo $item->Print()?><br/>
-           </div>
+        <?php
+        if (empty($products)): ?>
+            <p class="lead mt-3">There are no products</p>
+        <?php endif; ?>
+
+        <?php foreach ($products as $item): ?>
+            <div class="card">
+                <input type="checkbox" class="card_check"  >
+                <br/>
+                <?php echo $item->Print()?><br/>
+            </div>
         <?php endforeach;?>
+
+
     </main>
 <footer>
     <hr/>

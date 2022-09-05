@@ -23,11 +23,12 @@
       * @return bool
       */
      public $IsChecked;
-    public function Print(){
+
+     public function Print(){
         echo $this->SKU."<br/>";
         echo $this->Title."<br/>";
         echo $this->Price."<span> &#36</span><br/>";
-    }
+     }
 
 }
 

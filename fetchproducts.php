@@ -17,6 +17,7 @@ foreach ($books as $book){
     $item=$creator->createBook();
     $item->Id=$book['id'];
     $item->SKU=$book["sku"];
+    $item->Price=$book['price'];
     $item->Title=$book['title'];
     $item->Weight=$book['weight'];
     array_push($products,$item);
@@ -30,7 +31,8 @@ foreach ($furnitures as $furniture){
     $item=$creator->createFurniture();
     $item->Id=$furniture['id'];
     $item->SKU=$furniture["sku"];
-    $item->Title=$furniture['name'];
+    $item->Title=$furniture['title'];
+    $item->Price=$furniture['price'];
     $item->length=$furniture['lenght'];
     $item->width=$furniture['width'];
     $item->height=$furniture['height'];
@@ -47,7 +49,7 @@ foreach ($dvds as $dvd){
     $item=$creator->createDvd();
     $item->Id=$dvd['id'];
     $item->SKU=$dvd["sku"];
-    $item->Title=$dvd['name'];
+    $item->Title=$dvd['title'];
     $item->Price=$dvd['price'];
     $item->size=$dvd['size'];
     array_push($products,$item);
