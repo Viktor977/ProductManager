@@ -6,9 +6,9 @@ class Dvd extends Product
      * @var string
      */
     public $size;
-    public function Print()
+    public function PrintProduct()
     {
-        parent::Print();
+        parent::PrintProduct();
         echo "<span>Size :</span>".$this->size."<span>MB</span><br/>";
     }
 }

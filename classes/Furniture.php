@@ -1,5 +1,5 @@
 <?php
-include_once ("Product.php");
+include_once ('Product.php');
 class Furniture extends Product
 {
     /**
@@ -14,9 +14,9 @@ class Furniture extends Product
      * @var string
      */
     public $length;
-    public function Print()
+    public function PrintProduct()
     {
-        parent::Print();
+        parent::PrintProduct();
         echo "<span>Demension: </span>".$this->height."<span>&times;</span>".$this->width."<span>&times;</span>".$this->length;
     }
 }

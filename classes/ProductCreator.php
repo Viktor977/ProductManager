@@ -1,8 +1,7 @@
 <?php
-include_once ("Models/Book.php");
-include_once("Models/Dvd.php");
-include_once ("Models/Furniture.php");
-
+include_once ('Book.php');
+include_once ('Dvd.php');
+include_once ('Furniture.php');
 class ProductCreator
 {
     public function createBook(): Book
@@ -20,4 +19,3 @@ class ProductCreator
         return new Dvd();
     }
 }
-

@@ -1,10 +1,10 @@
 <?php
 
- abstract class Product
+abstract class Product
 {
-     /**
-      * @var int
-      */
+    /**
+     * @var int
+     */
     public  $Id;
     /**
      * @var string
@@ -19,16 +19,14 @@
      */
     public $Price;
 
-     /**
-      * @return bool
-      */
-     public $IsChecked;
+    /**
+     * @return bool
+     */
+    public $IsChecked;
 
-     public function Print(){
+    public function PrintProduct(){
         echo $this->SKU."<br/>";
         echo $this->Title."<br/>";
         echo $this->Price."<span> &#36</span><br/>";
-     }
-
+    }
 }
-
