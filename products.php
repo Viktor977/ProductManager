@@ -5,41 +5,16 @@ include_once ('classes/ProductCreator.php');
 $dsn='mysql:host=localhost;dbname=products;charset=utf8';
 $username='brad';
 $password='1234';
-$products=array();
+
 $creator=new ProductCreator();
 $dataBase=new MysqlStorage($dsn,$username,$password);
-$books=$dataBase->getBooks();
-$dvds=$dataBase->getDvds();
-$furniture=$dataBase->getFurniture();
+$products=getProducts($dataBase,$creator);
 
-function fillBook(ProductCreator $creator):Book{
-    $book =$creator->createBook();
-    $book->SKU = $_POST['sku'];
-    $book->Title = $_POST["title"];
-    $book->Price = $_POST["price"];
-    $book->Weight = $_POST["weight"];
 
-    return $book;
-};
-function fillDvd(ProductCreator  $creator):Dvd{
-    $dvd=$creator->createDvd();
-    $dvd->SKU=$_POST["sku"];
-    $dvd->Title=$_POST["title"];
-    $dvd->Price=$_POST["price"];
-    $dvd->size=$_POST["size"];
 
-    return $dvd;
-}
-function fillFurniture(ProductCreator $creator):Furniture{
-    $furniture=$creator->createFurniture();
-    $furniture->SKU=$_POST["sku"];
-    $furniture->Title=$_POST["title"];
-    $furniture->Price=$_POST["price"];
-    $furniture->height=$_POST["height"];
-    $furniture->width=$_POST["width"];
-    $furniture->length=$_POST["length"];
-    return  $furniture;
-}
+
+
+//---------------------------------------------
 if (isset($_POST['weight'])) {
     $book = fillBook($creator);
     $dataBase->addBook($book);
@@ -58,39 +33,164 @@ if(isset($_POST['height'])){
     header('location: index.php');
 
 }
+if(isset($_POST['forDelete'])){
+    echo'<h1>Hello products.php</h1>';
 
-foreach ($books as $book) {
-    $itemBook = $creator->createBook();
-    $itemBook->Id = $book['id'];
-    $itemBook->SKU = $book['sku'];
-    $itemBook->Title = $book['title'];
-    $itemBook->Price = $book['price'];
-    $itemBook->Weight = $book['weight'];
-    array_push($products, $itemBook);
+}
+
+//----------------------------------------------------
+function fillBook(ProductCreator $creator):Book{
+    $book =$creator->createBook();
+    $book->SKU = $_POST['sku'];
+    $book->Title = $_POST["title"];
+    $book->Price = $_POST["price"];
+    $book->Weight = $_POST["weight"];
+
+    return $book;
+};
+
+
+function fillDvd(ProductCreator  $creator):Dvd{
+    $dvd=$creator->createDvd();
+    $dvd->SKU=$_POST["sku"];
+    $dvd->Title=$_POST["title"];
+    $dvd->Price=$_POST["price"];
+    $dvd->size=$_POST["size"];
+
+    return $dvd;
 }
 
 
-foreach ($dvds as $dvd){
-    $itemDvd=$creator->createDvd();
-    $itemDvd->Id=$dvd['id'];
-    $itemDvd->SKU=$dvd['sku'];
-    $itemDvd->Title=$dvd['title'];
-    $itemDvd->Price=$dvd['price'];
-    $itemDvd->size=$dvd['size'];
-    array_push($products,$itemDvd);
+function fillFurniture(ProductCreator $creator):Furniture{
+    $furniture=$creator->createFurniture();
+    $furniture->SKU=$_POST["sku"];
+    $furniture->Title=$_POST["title"];
+    $furniture->Price=$_POST["price"];
+    $furniture->height=$_POST["height"];
+    $furniture->width=$_POST["width"];
+    $furniture->length=$_POST["length"];
+    return  $furniture;
 }
 
-foreach ($furniture as $item){
-    $itemFurniture=$creator->createFurniture();
-    $itemFurniture->Id=$item['id'];
-    $itemFurniture->SKU=$item['sku'];
-    $itemFurniture->Title=$item['title'];
-    $itemFurniture->Price=$item['price'];
-    $itemFurniture->length=$item['length'];
-    $itemFurniture->width=$item['width'];
-    $itemFurniture->height=$item["height"];
-    array_push($products,$itemFurniture);
+
+//----------------------------------------
+
+function getProducts(MysqlStorage $dataBase,ProductCreator $creator){
+    $products =array();
+
+    $books=getBooks($dataBase,$creator);
+    foreach ($books as $book)
+        array_push($products,$book);
+    $dvd=getDvd($dataBase,$creator);
+    foreach ($dvd as $item)
+        array_push($products,$item);
+    $furniture=getFurniture($dataBase,$creator);
+    foreach ($furniture as $item)
+        array_push($products,$item);
+
+    return $products;
 }
+function getBooks(MysqlStorage $dataBase, ProductCreator $creator)
+{
+    $products=[];
+    $books=$dataBase->getBooks();
+    foreach ($books as $book) {
+        $itemBook = $creator->createBook();
+        $itemBook->Id = $book['id'];
+        $itemBook->SKU = $book['sku'];
+        $itemBook->Title = $book['title'];
+        $itemBook->Price = $book['price'];
+        $itemBook->Weight = $book['weight'];
+        array_push($products, $itemBook);
+    }
+    return $products;
+}
+function getDvd(MysqlStorage $database,ProductCreator $creator)
+{
+    $dvds=$database->getDvds();
+    $products=[];
+    foreach ($dvds as $dvd) {
+        $itemDvd = $creator->createDvd();
+        $itemDvd->Id = $dvd['id'];
+        $itemDvd->SKU = $dvd['sku'];
+        $itemDvd->Title = $dvd['title'];
+        $itemDvd->Price = $dvd['price'];
+        $itemDvd->size = $dvd['size'];
+        array_push($products, $itemDvd);
+    }
+    return $products;
+}
+function getFurniture(MysqlStorage $dataBase,ProductCreator $creator)
+{
+    $products = [];
+    $furniture = $dataBase->getFurniture();
+
+    foreach ($furniture as $item) {
+        $itemFurniture = $creator->createFurniture();
+        $itemFurniture->Id = $item['id'];
+        $itemFurniture->SKU = $item['sku'];
+        $itemFurniture->Title = $item['title'];
+        $itemFurniture->Price = $item['price'];
+        $itemFurniture->length = $item['length'];
+        $itemFurniture->width = $item['width'];
+        $itemFurniture->height = $item["height"];
+        array_push($products, $itemFurniture);
+    }
+    return $products;
+}
+
+
+//--------------------------------------
+
+function findProductsForDelete(array $num,array $products){
+    $arr=[];
+
+    for( $i=0;$i<count($num);++$i) {
+        if ( array_key_exists($num[$i], $products)) {
+           array_push($arr,$products[$i]);
+        }
+    }
+
+    return $arr;
+}
+
+function findBookForDelete($selected)
+{
+    $books = [];
+    for ($i = 0; $i < count($selected); ++$i) {
+        if ($selected[$i] instanceof Book) {
+            array_push($books, $selected[$i]);
+        }
+    }
+
+    return $books;
+}
+
+
+function findDvdForDelete(array $selected){
+
+    $dvds = [];
+    for ($i = 0; $i < count($selected); ++$i) {
+        if ($selected[$i] instanceof Dvd) {
+            array_push($dvds,$selected[$i]);
+        }
+    }
+
+    return $dvds;
+}
+
+function findFurnitureForDelete(array  $selected){
+
+    $furniture = [];
+    for ($i = 0; $i < count($selected); ++$i) {
+        if ($selected[$i] instanceof Furniture) {
+            array_push($furniture,$selected[$i]);
+        }
+    }
+
+    return $furniture;
+}
+
 
 
 

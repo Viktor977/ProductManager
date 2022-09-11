@@ -2,14 +2,23 @@
 let productType = document.querySelector("select");
 let tForm = document.getElementById("product_form")
 
+
+if(productType!=null){
+    productType.addEventListener('click' ,fillForm,true);
+};
+
 function fillForm() {
     Book();
     Dvd();
     Furniture();
-    document.querySelector("#leb").remove();
+    let leb=document.querySelector("#leb");
+    if(leb!=null){
+        leb.remove();
+   };
 };
-productType.addEventListener("click" ,fillForm);
+
 function Book(){
+
     if(productType.value.includes('book')){
 
         tForm.insertAdjacentHTML("beforeend",
@@ -69,12 +78,28 @@ function Furniture(){
 
 function addProduct(){
     tForm.submit();
-    if(document.location.href.indexOf('index.php') === -1) {
+};
+
+
+function deleteProducts() {
+    arr = selectCards().toString();
+    console.log(arr);
+    $.POST('products.php?forDelete');
+
+}
+
+
+function selectCards(){
+    let cards = document.getElementsByClassName('card');
+    let checkedCard = [];
+    let checkboxes = document.getElementsByClassName('delete-checkbox');
+    for (let i = 0; i < checkboxes.length; i++) {
+
+        if (checkboxes[i].checked == true) {
+
+            checkedCard.push(i);
+        }
     }
+
+    return  checkedCard;
 }
-
-
-function deleteProducts(){
-
-}
-

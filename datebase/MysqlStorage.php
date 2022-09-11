@@ -27,7 +27,9 @@ class MysqlStorage
     }
 
     function deleteBookById($id){
-         $this->pdo->query( "DELETE FROM books WHERE `books`.`id` = $id");
+
+         $sql=$this->pdo->prepare("DELETE FROM books WHERE id = ?" );
+         $sql->execute([$id]);
     }
 
     function deleteDvdById($id){

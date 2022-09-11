@@ -19,11 +19,6 @@ abstract class Product
      */
     public $Price;
 
-    /**
-     * @return bool
-     */
-    public $IsChecked;
-
     public function PrintProduct(){
         echo $this->SKU."<br/>";
         echo $this->Title."<br/>";

@@ -4,10 +4,12 @@
 <?php endif; ?>
 <?php foreach ($products as $item): ?>
     <div class="card">
-        <input type="checkbox" class="delete-checkbox"  >
-
-        <?php echo $item->PrintProduct()?>
+        <input type="checkbox" class="delete-checkbox" />
+            <div class="card_body">
+              <?php echo $item->PrintProduct()?>
+            </div>
     </div>
 <?php endforeach;?>
+
 <?php
 

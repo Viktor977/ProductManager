@@ -1,8 +1,6 @@
 <?php
 include 'head.php';
-if(isset($_GET['add']))echo'aa';
 ?>
-
 
 <body>
 <div class="container">
@@ -33,7 +31,6 @@ if(isset($_GET['add']))echo'aa';
                 <input type="number" name='price' id="price" min="0" class="form-control" >
             </div>
         </div>
-
         <div class="md-3 row">
             <label  class="col-sm-2 col-form-label"><span id="leb">Type Switcher</span></label>
             <div class="col-sm-3">
