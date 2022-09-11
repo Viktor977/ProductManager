@@ -78,16 +78,18 @@ function Furniture(){
 
 function addProduct(){
     tForm.submit();
+
 };
-
-
+//----------------------------------------------------------------
+function redirect(){
+   document.location.href='index.php';
+}
 function deleteProducts() {
     arr = selectCards().toString();
     console.log(arr);
-    $.POST('products.php?forDelete');
+    $.get('products.php?Delete&arr='+arr,redirect);
 
 }
-
 
 function selectCards(){
     let cards = document.getElementsByClassName('card');

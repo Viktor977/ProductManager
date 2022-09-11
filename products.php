@@ -1,5 +1,5 @@
 <?php
-include_once ('datebase/MysqlStorage.php');
+include_once('database/MysqlStorage.php');
 include_once ('classes/ProductCreator.php');
 
 $dsn='mysql:host=localhost;dbname=products;charset=utf8';
@@ -11,14 +11,11 @@ $dataBase=new MysqlStorage($dsn,$username,$password);
 $products=getProducts($dataBase,$creator);
 
 
-
-
-
 //---------------------------------------------
 if (isset($_POST['weight'])) {
     $book = fillBook($creator);
     $dataBase->addBook($book);
-    header('location: index.php');
+   header('location: index.php');
 
 }
 if(isset($_POST['size'])){
@@ -33,8 +30,17 @@ if(isset($_POST['height'])){
     header('location: index.php');
 
 }
-if(isset($_POST['forDelete'])){
-    echo'<h1>Hello products.php</h1>';
+if(isset($_GET['Delete'])) {
+    $productsForDelete = findProductsForDelete($_GET['arr'], $products);
+    $books = findBookForDelete($productsForDelete);
+    $dvd = findDvdForDelete($productsForDelete);
+    $furniture = findFurnitureForDelete($productsForDelete);
+    foreach ($books as $value)
+        $dataBase->deleteBookById($value->Id);
+    foreach ($dvd as $value)
+        $dataBase->deleteDvdById($value->Id);
+    foreach ($furniture as $value)
+        $dataBase->deleteFurnitureById($value->Id);
 
 }
 
@@ -142,17 +148,18 @@ function getFurniture(MysqlStorage $dataBase,ProductCreator $creator)
 
 //--------------------------------------
 
-function findProductsForDelete(array $num,array $products){
-    $arr=[];
-
-    for( $i=0;$i<count($num);++$i) {
-        if ( array_key_exists($num[$i], $products)) {
-           array_push($arr,$products[$i]);
+function findProductsForDelete(string $num,array $products){
+    $arr=explode(',',$num);
+$prod=[];
+    for( $i=0;$i<count($arr);++$i) {
+        if ( array_key_exists($arr[$i], $products)) {
+           array_push($prod,$products[$i]);
         }
     }
 
-    return $arr;
+    return $prod;
 }
+
 
 function findBookForDelete($selected)
 {

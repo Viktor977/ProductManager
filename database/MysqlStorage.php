@@ -33,11 +33,13 @@ class MysqlStorage
     }
 
     function deleteDvdById($id){
-         $this->pdo->query("DELETE FROM dvd WHERE id=$id");
+        $sql= $this->pdo->prepare("DELETE FROM dvd WHERE id=?");
+        $sql->execute([$id]);
     }
 
     function deleteFurnitureById($id){
-         $this->pdo->query("DELETE FROM furniture WHERE id=$id");
+        $sql= $this->pdo->prepare("DELETE FROM furniture WHERE id=?");
+        $sql->execute([$id]);
     }
 
     function  addBook( Book $book)

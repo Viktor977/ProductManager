@@ -12,7 +12,7 @@ include 'head.php';
         </div>
     </header>
     <hr/>
-    <form method="post" id="product_form" action='<?php include('products.php') ?>'>
+    <form method="post" id="product_form" action='products.php'>
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">SKU</label>
             <div class="col-sm-3">
