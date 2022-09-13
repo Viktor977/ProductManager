@@ -5,7 +5,7 @@
         <span class="fs-4">Product List</span>
         <div class="nav">
             <a  class="btn btn-outline-primary" href="addProduct.php">ADD</a>
-            <button type="submit" class="btn btn-outline-danger m-3"  onclick="deleteProducts()">MASS DELETE</button>
+            <button type="submit" class="btn btn-outline-danger m-3" id="#delete-product-btn" onclick="deleteProducts()">MASS DELETE</button>
         </div>
     </header>
     <div> <hr/></div>

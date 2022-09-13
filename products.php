@@ -148,12 +148,13 @@ function getFurniture(MysqlStorage $dataBase,ProductCreator $creator)
 
 //--------------------------------------
 
-function findProductsForDelete(string $num,array $products){
-    $arr=explode(',',$num);
-$prod=[];
-    for( $i=0;$i<count($arr);++$i) {
-        if ( array_key_exists($arr[$i], $products)) {
-           array_push($prod,$products[$i]);
+function findProductsForDelete(string $num,array $products)
+{
+    $arr = explode(',', $num);
+    $prod = [];
+    for ($i = 0; $i < count($arr); ++$i) {
+        if (array_key_exists($arr[$i], $products)) {
+            array_push($prod, $products[$i]);
         }
     }
 
