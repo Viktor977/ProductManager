@@ -14,7 +14,7 @@ include 'head.php';
     <hr/>
     <form method="post" id="product_form" action='products.php'>
         <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">SKU</label>
+            <label class="col-sm-2 col-form-label" >SKU</label>
             <div class="col-sm-3">
                 <input type="text" id="sku" name="sku" class="form-control" >
             </div>
@@ -26,15 +26,15 @@ include 'head.php';
             </div>
         </div>
         <div class="mb-3 row">
-            <label  class="col-sm-2 col-form-label">Price ($)</label>
+            <label  class="col-sm-2 col-form-label" >Price ($)</label>
             <div class="col-sm-3">
-                <input type="number" name='price' id="price" min="0" class="form-control" >
+                <input type="text" name='price' id="price"  class="form-control" >
             </div>
         </div>
         <div class="md-3 row">
             <label  class="col-sm-2 col-form-label"><span id="leb">Type Switcher</span></label>
             <div class="col-sm-3">
-                <select id="typeProduct" class="form-select form-select sm-3" >
+                <select  class="form-select form-select sm-3" id="productType" >
                     <option selected>Type Switcher</option>
                     <option value="dvd" id="dvd">DVD-disc</option>
                     <option value="book" id="book">Book</option>
@@ -43,6 +43,9 @@ include 'head.php';
             </div>
         </div>
     </form>
+    <div class="message">
+
+    </div>
 </div>
 <?php include 'footer.php'?>
 
